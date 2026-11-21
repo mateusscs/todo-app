@@ -163,3 +163,46 @@ test('respostas 404 e 500 exibem a mensagem com role="alert"', async () => {
     assert.match(html, /<p class="erro" role="alert">/);
   });
 });
+
+test('desmarcar (POST sem o campo concluida) volta a pendente e persiste', async () => {
+  await comServidor(async (base) => {
+    await criar(base, 'Tarefa A');
+    const id = 1;
+    await concluir(base, id, 'concluida=on');
+    const resp = await concluir(base, id, '');
+    assert.equal(resp.status, 302);
+    assert.equal(resp.headers.get('location'), `/#tarefa-${id}`);
+    const html = await (await fetch(`${base}/`)).text();
+    const li = html.match(/<li id="tarefa-1"[^>]*>[\s\S]*?<\/li>/)[0];
+    assert.doesNotMatch(li, /checked/);
+    assert.doesNotMatch(li, /class="concluida"/);
+  });
+});
+
+test('desmarcar preserva a ordem da lista', async () => {
+  await comServidor(async (base) => {
+    await criar(base, 'Primeira');
+    await criar(base, 'Segunda');
+    await criar(base, 'Terceira');
+    const [a, b, c] = [1, 2, 3];
+    await concluir(base, b, 'concluida=on');
+    await concluir(base, b, '');
+    const html = await (await fetch(`${base}/`)).text();
+    const ids = [...html.matchAll(/<li id="tarefa-(\d+)"/g)].map((m) => Number(m[1]));
+    assert.deepEqual(ids, [a, b, c]);
+  });
+});
+
+test('repetir o mesmo estado é idempotente, sem erro nem duplicação', async () => {
+  await comServidor(async (base) => {
+    await criar(base, 'Única');
+    const id = 1;
+    for (const corpo of ['', '', 'concluida=on', 'concluida=on']) {
+      const resp = await concluir(base, id, corpo);
+      assert.equal(resp.status, 302);
+    }
+    const html = await (await fetch(`${base}/`)).text();
+    assert.equal([...html.matchAll(/<li id="tarefa-/g)].length, 1);
+    assert.match(html, /name="concluida" checked/);
+  });
+});

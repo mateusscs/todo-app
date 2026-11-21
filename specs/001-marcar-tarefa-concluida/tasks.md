@@ -56,7 +56,7 @@ description: "Lista de tarefas: Marcar Tarefa como Concluída"
 
 **Independent Test**: Marcar uma tarefa e depois enviar `POST /tarefas/:id/conclusao` sem o campo `concluida`; verificar `302`, ausência de `checked` e da classe `concluida` no `GET /` seguinte (quickstart #4).
 
-- [ ] T006 [US2] Estender `test/app.test.js` com os casos de desmarcar via `POST /tarefas/:id/conclusao` sem o campo `concluida` (FR-006): volta a pendente, persiste após novo `GET /`, ordem da lista inalterada e repetição do mesmo estado idempotente (sem erro nem duplicação); ajustar a rota em `src/app.js` e/ou a marcação em `views/index.ejs` somente se algum desses casos falhar
+- [X] T006 [US2] Estender `test/app.test.js` com os casos de desmarcar via `POST /tarefas/:id/conclusao` sem o campo `concluida` (FR-006): volta a pendente, persiste após novo `GET /`, ordem da lista inalterada e repetição do mesmo estado idempotente (sem erro nem duplicação); ajustar a rota em `src/app.js` e/ou a marcação em `views/index.ejs` somente se algum desses casos falhar
 
 **Checkpoint**: US1 e US2 funcionam de forma independente; `npm test` passa.
 
