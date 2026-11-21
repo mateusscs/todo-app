@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Tarefas</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; color: #1f2937; }
+    h1 { margin-bottom: 1rem; }
+    form { display: flex; gap: .5rem; margin-bottom: 1.5rem; }
+    input[type=text] { flex: 1; padding: .5rem; border: 1px solid #cbd5e1; border-radius: 6px; }
+    button { padding: .5rem 1rem; border: 0; border-radius: 6px; background: #2563eb; color: #fff; cursor: pointer; }
+    ul { list-style: none; padding: 0; }
+    li { padding: .6rem .75rem; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: .5rem; }
+    .erro { color: #b91c1c; }
+    .vazio { color: #64748b; }
+  </style>
+</head>
+<body>
+  <h1>Lista de Tarefas</h1>
+
+  <form method="post" action="/tarefas">
+    <input type="text" name="titulo" placeholder="Nova tarefa" aria-label="Título da tarefa">
+    <button type="submit">Adicionar</button>
+  </form>
+  <% if (erro) { %><p class="erro"><%= erro %></p><% } %>
+
+  <% if (tarefas.length === 0) { %>
+    <p class="vazio">Nenhuma tarefa cadastrada.</p>
+  <% } else { %>
+    <ul>
+      <% tarefas.forEach(function (tarefa) { %>
+        <li data-id="<%= tarefa.id %>"><%= tarefa.titulo %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+</body>
+</html>

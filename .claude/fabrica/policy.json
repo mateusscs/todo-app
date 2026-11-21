@@ -1,0 +1,406 @@
+{
+  "orquestrador": {
+    "task": [
+      [
+        "*",
+        "deny"
+      ],
+      [
+        "subagent-*",
+        "allow"
+      ],
+      [
+        "subagent-arquiteto",
+        "ask"
+      ]
+    ],
+    "edit": [
+      [
+        "*",
+        "deny"
+      ],
+      [
+        "specs/*/state.json",
+        "allow"
+      ],
+      [
+        "specs/*/notes/**",
+        "allow"
+      ]
+    ],
+    "bash": [
+      [
+        "*",
+        "allow"
+      ],
+      [
+        "git push --force*",
+        "deny"
+      ],
+      [
+        "git push -f*",
+        "deny"
+      ],
+      [
+        "git rebase*",
+        "deny"
+      ],
+      [
+        "git reset --hard*",
+        "deny"
+      ],
+      [
+        "gh pr merge*",
+        "deny"
+      ],
+      [
+        "*gh.exe\" pr merge*",
+        "deny"
+      ]
+    ]
+  },
+  "subagent-analista-requisitos": {
+    "edit": [
+      [
+        "*",
+        "deny"
+      ],
+      [
+        "specs/**",
+        "allow"
+      ]
+    ],
+    "bash": [
+      [
+        "*",
+        "allow"
+      ],
+      [
+        "git commit*",
+        "deny"
+      ],
+      [
+        "git push*",
+        "deny"
+      ],
+      [
+        "git merge*",
+        "deny"
+      ],
+      [
+        "git rebase*",
+        "deny"
+      ],
+      [
+        "git reset*",
+        "deny"
+      ],
+      [
+        "git stash*",
+        "deny"
+      ],
+      [
+        "git switch -c*",
+        "deny"
+      ],
+      [
+        "git checkout -b*",
+        "deny"
+      ],
+      [
+        "gh *",
+        "deny"
+      ],
+      [
+        "*gh.exe\" *",
+        "deny"
+      ]
+    ]
+  },
+  "subagent-arquiteto": {
+    "edit": [
+      [
+        "*",
+        "deny"
+      ],
+      [
+        "specs/**",
+        "allow"
+      ],
+      [
+        "AGENTS.md",
+        "allow"
+      ],
+      [
+        "CLAUDE.md",
+        "allow"
+      ]
+    ],
+    "bash": [
+      [
+        "*",
+        "allow"
+      ],
+      [
+        "git commit*",
+        "deny"
+      ],
+      [
+        "git push*",
+        "deny"
+      ],
+      [
+        "git merge*",
+        "deny"
+      ],
+      [
+        "git rebase*",
+        "deny"
+      ],
+      [
+        "git reset*",
+        "deny"
+      ],
+      [
+        "git stash*",
+        "deny"
+      ],
+      [
+        "git switch -c*",
+        "deny"
+      ],
+      [
+        "git checkout -b*",
+        "deny"
+      ],
+      [
+        "gh *",
+        "deny"
+      ],
+      [
+        "*gh.exe\" *",
+        "deny"
+      ]
+    ]
+  },
+  "subagent-criador-tarefas": {
+    "edit": [
+      [
+        "*",
+        "deny"
+      ],
+      [
+        "specs/*/tasks.md",
+        "allow"
+      ],
+      [
+        "specs/*/notes/**",
+        "allow"
+      ]
+    ],
+    "bash": [
+      [
+        "*",
+        "allow"
+      ],
+      [
+        "git commit*",
+        "deny"
+      ],
+      [
+        "git push*",
+        "deny"
+      ],
+      [
+        "git merge*",
+        "deny"
+      ],
+      [
+        "git rebase*",
+        "deny"
+      ],
+      [
+        "git reset*",
+        "deny"
+      ],
+      [
+        "git stash*",
+        "deny"
+      ],
+      [
+        "git switch -c*",
+        "deny"
+      ],
+      [
+        "git checkout -b*",
+        "deny"
+      ],
+      [
+        "gh *",
+        "deny"
+      ],
+      [
+        "*gh.exe\" *",
+        "deny"
+      ]
+    ]
+  },
+  "subagent-desenvolvedor": {
+    "bash": [
+      [
+        "*",
+        "allow"
+      ],
+      [
+        "git commit*",
+        "deny"
+      ],
+      [
+        "git push*",
+        "deny"
+      ],
+      [
+        "git merge*",
+        "deny"
+      ],
+      [
+        "git rebase*",
+        "deny"
+      ],
+      [
+        "git reset*",
+        "deny"
+      ],
+      [
+        "git stash*",
+        "deny"
+      ],
+      [
+        "git switch -c*",
+        "deny"
+      ],
+      [
+        "git checkout -b*",
+        "deny"
+      ],
+      [
+        "gh *",
+        "deny"
+      ],
+      [
+        "*gh.exe\" *",
+        "deny"
+      ]
+    ]
+  },
+  "subagent-revisor-codigo": {
+    "edit": [
+      [
+        "*",
+        "deny"
+      ],
+      [
+        "specs/*/review-report.md",
+        "allow"
+      ],
+      [
+        "specs/*/notes/**",
+        "allow"
+      ]
+    ],
+    "bash": [
+      [
+        "*",
+        "allow"
+      ],
+      [
+        "git commit*",
+        "deny"
+      ],
+      [
+        "git push*",
+        "deny"
+      ],
+      [
+        "git merge*",
+        "deny"
+      ],
+      [
+        "git rebase*",
+        "deny"
+      ],
+      [
+        "git reset*",
+        "deny"
+      ],
+      [
+        "git stash*",
+        "deny"
+      ],
+      [
+        "git switch -c*",
+        "deny"
+      ],
+      [
+        "git checkout -b*",
+        "deny"
+      ],
+      [
+        "gh *",
+        "deny"
+      ],
+      [
+        "*gh.exe\" *",
+        "deny"
+      ]
+    ]
+  },
+  "subagent-qa": {
+    "bash": [
+      [
+        "*",
+        "allow"
+      ],
+      [
+        "git commit*",
+        "deny"
+      ],
+      [
+        "git push*",
+        "deny"
+      ],
+      [
+        "git merge*",
+        "deny"
+      ],
+      [
+        "git rebase*",
+        "deny"
+      ],
+      [
+        "git reset*",
+        "deny"
+      ],
+      [
+        "git stash*",
+        "deny"
+      ],
+      [
+        "git switch -c*",
+        "deny"
+      ],
+      [
+        "git checkout -b*",
+        "deny"
+      ],
+      [
+        "gh *",
+        "deny"
+      ],
+      [
+        "*gh.exe\" *",
+        "deny"
+      ]
+    ]
+  }
+}

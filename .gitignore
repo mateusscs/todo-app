@@ -1,0 +1,5 @@
+node_modules/
+.env
+.claude/settings.local.json
+.claude/fabrica/slack-log.jsonl
+.claude/fabrica/hook-debug.jsonl
