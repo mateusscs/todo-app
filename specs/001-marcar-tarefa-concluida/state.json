@@ -10,7 +10,7 @@
     "build": null
   },
   "last_reviewed_commit": "2cb098f35bebdaa2b5ffaaa3a582c5719f43e2bb",
-  "stage": "TESTANDO",
+  "stage": "PUBLICANDO_PR",
   "artifacts": {
     "spec.md": "E1",
     "checklists/requirements.md": "E1",
@@ -83,7 +83,7 @@
       ]
     },
     "E6": {
-      "status": "em_andamento",
+      "status": "aprovado",
       "devolucoes": 0,
       "rodada": 1,
       "parecer": "aprovado com ressalvas",
@@ -92,7 +92,11 @@
         "D1 Média: com JS, falha de rede na submissão não exibe mensagem da aplicação (FR-008 edge case) — suspeita por inspeção",
         "D2 Baixa: color #64748b em li.concluida label diverge da premissa 'sem cores adicionais'"
       ],
-      "revisao_testes_qa": "em_andamento"
+      "revisao_testes_qa": "aprovado com ressalvas (4 baixos/sugestão, sem Crítico)"
+    },
+    "E7": {
+      "status": "em_andamento",
+      "devolucoes": 0
     }
   },
   "tasks_done": [
@@ -119,6 +123,6 @@
       "status": "pendente"
     }
   },
-  "updated_at": "2026-11-21T16:10:00Z",
+  "updated_at": "2026-11-21T16:20:00Z",
   "rodadas_correcao": 0
 }

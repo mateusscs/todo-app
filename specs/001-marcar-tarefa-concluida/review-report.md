@@ -155,3 +155,64 @@ confirmação em navegador continua pendente (ver Pendências).
 
 **aprovado com ressalvas**: nenhum apontamento bloqueante. Os apontamentos 1 a 6 não bloqueiam e devem
 constar na descrição do PR (ou ser corrigidos pelo Desenvolvedor, se o orquestrador decidir).
+
+---
+
+## Revisão dos testes do QA (E6)
+
+**Escopo:** só `test/aceite/marcar-tarefa-concluida.test.js` (commit `62014fe`, intervalo `2cb098f..HEAD`).
+O código de produção não foi reaberto.
+**Execução:** `npm test`: 43 testes, 43 passaram, 0 falhas (Node v24.14.1).
+
+### Avaliação geral
+
+- **Determinismo:** cada teste cria um repositório próprio (`criarRepositorio()`) e um servidor próprio em porta
+  efêmera (`listen(0)`), fechado no `finally`. Os testes não dependem de rede externa nem de ordem de execução
+  ou estado compartilhado. O teste concorrente (12 requisições em paralelo) verifica só invariantes que não
+  dependem da ordem de chegada. Por isso não é intermitente.
+- **Correção frente à spec e ao contrato:** as asserções seguem o contrato `contracts/http-conclusao.md`:
+  302 com `Location: /#tarefa-<id>`, 404 para id inválido ou inexistente, 500 com mensagem genérica e sem stack
+  trace, presença ou ausência de `concluida`, marcação HTML por tarefa e `role="alert"`. Também seguem os cenários
+  US1/US2, os edge cases e FR-001 a FR-009 / SC-002 a SC-005. Não encontrei falso positivo: os estados são lidos do
+  `<li>` isolado, e os testes de "não alterar as demais" comparam título, classe e `checked` de cada tarefa.
+- **Legibilidade:** os nomes dos testes trazem rastreabilidade (`[US1-AS1, FR-003...]`). Os helpers são pequenos e
+  coesos (`criar`, `definir`, `estado`, `idsNaLista`), e o cabeçalho lista o que não é coberto (verificação manual).
+- **Constituição:** usa `node:test` e `node:assert/strict`, sem dependências novas, com nomes em pt-BR. Atende ao princípio II.
+
+### Apontamentos (ordenados por severidade)
+
+Nenhum apontamento **Crítico** e nenhuma violação da constituição.
+
+1. **Baixo**: `test/aceite/marcar-tarefa-concluida.test.js:14` e `:19`, ciclo de vida do servidor no helper `comServidor`.
+   - **Problema:** `listen(0)` sem host escuta em todas as interfaces (no Windows pode abrir aviso de firewall e
+     expõe a porta na rede durante os testes). Além disso, `servidor.address()` é lido de forma síncrona logo após
+     `listen`, e `servidor.close()` não é aguardado. Funciona no Node 20+ para TCP, mas depende de detalhe de
+     implementação e pode deixar o fechamento pendente entre testes.
+   - **Correção:** `const servidor = criarApp(repo).listen(0, '127.0.0.1'); await once(servidor, 'listening');`
+     (com `once` de `node:events`) e, no `finally`, `await new Promise((r) => servidor.close(r));`.
+2. **Baixo**: `test/aceite/marcar-tarefa-concluida.test.js:52-61` (`estado`) e `:59`.
+   - **Problema:** `/\schecked>/` supõe que `checked` seja o último atributo do `<input>`. Se a view reordenar os
+     atributos ou passar a usar `checked="checked"`, o teste falha de forma falsa. Além disso, quando o `<li>` não
+     existe, `estado()` retorna `null` e o acesso `.concluida` lança `TypeError`, em vez de uma falha de asserção
+     com mensagem clara.
+   - **Correção:** usar `/\schecked(?=[\s>=\/])/`. Nos chamadores, ou dentro de `estado`, fazer
+     `assert.ok(li, \`li da tarefa ${id} deve existir\`)` antes de ler os campos.
+3. **Baixo**: `test/aceite/marcar-tarefa-concluida.test.js:217`, `:321`, `:323-324`, asserções acopladas ao texto da implementação.
+   - **Problema:** as regex sobre CSS (`li label { ... overflow-wrap: anywhere`) e sobre o script
+     (`addEventListener('change'`, `botao.hidden = true`) verificam a forma do código, não o comportamento. Uma
+     refatoração equivalente quebra o teste. Já `doesNotMatch(li, /hidden/)` pode falhar de forma falsa se um
+     título contiver a palavra "hidden".
+   - **Correção:** aceitável no escopo atual, porque o comportamento real fica para a verificação manual já
+     registrada. Se quiser endurecer, restringir a busca ao atributo (`/<button[^>]*\shidden[\s>=]/`) e manter
+     as verificações de CSS/script como "presença mínima", com um comentário dizendo isso.
+4. **Sugestão**: `test/aceite/marcar-tarefa-concluida.test.js:248`.
+   - **Problema:** `typeof estado(html, 2).concluida === 'boolean'` é sempre verdadeiro quando o `<li>` existe.
+     A asserção não acrescenta verificação, embora o resto do teste (status 302, ids, tarefas 1 e 3 intactas) tenha valor.
+   - **Correção:** remover a linha ou trocar por um comentário explicando que o estado final da tarefa 2 depende
+     da ordem de chegada e, por isso, não é verificado.
+
+### Parecer (E6)
+
+**aprovado com ressalvas**: os testes são determinísticos, corretos frente à spec e ao contrato, e não têm
+falso positivo. Os apontamentos 1 a 4 não bloqueiam e podem ir para a descrição do PR ou ser ajustados pelo QA,
+se o orquestrador decidir.
