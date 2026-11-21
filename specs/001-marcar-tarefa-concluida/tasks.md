@@ -30,7 +30,7 @@ description: "Lista de tarefas: Marcar Tarefa como Concluída"
 
 **CRITICAL**: Nenhuma história pode começar antes desta fase.
 
-- [ ] T002 Em `src/tarefas.js`, adicionar o campo `concluida` (booleano, `false` ao criar em `adicionar`, incluído nas cópias de `listar()`) conforme `data-model.md` `Tarefa.concluida`, e o método idempotente `definirConclusao(id, concluida)` que aplica `Boolean(concluida)`, retorna a cópia atualizada ou `null` se o `id` não existir, sem alterar a ordem nem remover itens (FR-003, FR-005, FR-006); criar `test/tarefas.test.js` com `node:test` cobrindo: `concluida=false` ao criar, marcar, desmarcar, idempotência, `null` para id inexistente, ordem preservada e `listar()` retornando cópias
+- [X] T002 Em `src/tarefas.js`, adicionar o campo `concluida` (booleano, `false` ao criar em `adicionar`, incluído nas cópias de `listar()`) conforme `data-model.md` `Tarefa.concluida`, e o método idempotente `definirConclusao(id, concluida)` que aplica `Boolean(concluida)`, retorna a cópia atualizada ou `null` se o `id` não existir, sem alterar a ordem nem remover itens (FR-003, FR-005, FR-006); criar `test/tarefas.test.js` com `node:test` cobrindo: `concluida=false` ao criar, marcar, desmarcar, idempotência, `null` para id inexistente, ordem preservada e `listar()` retornando cópias
 
 **Checkpoint**: `npm test` passa; repositório pronto para as rotas e a view.
 

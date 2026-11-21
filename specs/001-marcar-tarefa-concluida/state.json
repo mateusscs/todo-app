@@ -54,11 +54,12 @@
     "E4": {
       "status": "em_andamento",
       "devolucoes": 0,
-      "fase_atual": "Phase 2: Foundational"
+      "fase_atual": "Phase 3: US1"
     }
   },
   "tasks_done": [
-    "T001"
+    "T001",
+    "T002"
   ],
   "blockers": [
     "Divergência Spec Kit (1.4.4.dev0): script update-agent-context não existe em .specify/scripts/powershell; arquivo de contexto do agente (CLAUDE.md) não foi atualizado no E2. Prevalece a skill.",
@@ -74,5 +75,5 @@
       "status": "pendente"
     }
   },
-  "updated_at": "2026-11-21T15:30:00Z"
+  "updated_at": "2026-11-21T15:35:00Z"
 }
