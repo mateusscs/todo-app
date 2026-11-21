@@ -3,14 +3,14 @@
   "base_branch": "main",
   "branch": "001-marcar-tarefa-concluida",
   "gh_path": "gh",
-  "pull_request": null,
+  "pull_request": "https://github.com/mateusscs/todo-app/pull/1",
   "commands": {
     "test": "npm test",
     "lint": null,
     "build": null
   },
   "last_reviewed_commit": "2cb098f35bebdaa2b5ffaaa3a582c5719f43e2bb",
-  "stage": "PUBLICANDO_PR",
+  "stage": "AGUARDANDO_MERGE",
   "artifacts": {
     "spec.md": "E1",
     "checklists/requirements.md": "E1",
@@ -95,8 +95,9 @@
       "revisao_testes_qa": "aprovado com ressalvas (4 baixos/sugestão, sem Crítico)"
     },
     "E7": {
-      "status": "em_andamento",
-      "devolucoes": 0
+      "status": "aprovado",
+      "devolucoes": 0,
+      "ci": "test pass; GitGuardian pass"
     }
   },
   "tasks_done": [
@@ -123,6 +124,6 @@
       "status": "pendente"
     }
   },
-  "updated_at": "2026-11-21T16:20:00Z",
+  "updated_at": "2026-11-21T16:35:00Z",
   "rodadas_correcao": 0
 }
