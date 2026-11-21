@@ -21,6 +21,9 @@ def agente_atual(evento: dict, raiz: Path) -> str | None:
     """Subagente: vem em agent_type. Sessão principal: o agente definido em settings.json (o orquestrador)."""
     if evento.get("agent_type"):
         return evento["agent_type"]
+    # Sessão conduzida diretamente pelo humano (ex.: rodar /speckit-constitution), fora do orquestrador.
+    if os.environ.get("FABRICA_AGENTE_PRINCIPAL"):
+        return os.environ["FABRICA_AGENTE_PRINCIPAL"]
     for nome in ("settings.local.json", "settings.json"):
         arq = raiz / ".claude" / nome
         if arq.exists():
