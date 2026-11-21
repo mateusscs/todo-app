@@ -12,8 +12,21 @@ function criarRepositorio() {
       if (!texto) {
         throw new Error('O título da tarefa é obrigatório.');
       }
-      const tarefa = { id: proximoId++, titulo: texto, criadaEm: new Date().toISOString() };
+      const tarefa = {
+        id: proximoId++,
+        titulo: texto,
+        criadaEm: new Date().toISOString(),
+        concluida: false,
+      };
       tarefas.push(tarefa);
+      return { ...tarefa };
+    },
+    definirConclusao(id, concluida) {
+      const tarefa = tarefas.find((t) => t.id === id);
+      if (!tarefa) {
+        return null;
+      }
+      tarefa.concluida = Boolean(concluida);
       return { ...tarefa };
     },
   };

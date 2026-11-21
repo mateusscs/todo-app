@@ -21,6 +21,27 @@ function criarApp(repositorio = criarRepositorio()) {
     }
   });
 
+  app.post('/tarefas/:id/conclusao', (req, res) => {
+    const renderizarErro = (status, mensagem) =>
+      res.status(status).render('index', { tarefas: repositorio.listar(), erro: mensagem });
+
+    if (!/^\d+$/.test(req.params.id)) {
+      return renderizarErro(404, 'Tarefa não encontrada.');
+    }
+    try {
+      const atualizada = repositorio.definirConclusao(
+        Number(req.params.id),
+        Boolean(req.body && 'concluida' in req.body),
+      );
+      if (!atualizada) {
+        return renderizarErro(404, 'Tarefa não encontrada.');
+      }
+      return res.redirect(`/#tarefa-${atualizada.id}`);
+    } catch (e) {
+      return renderizarErro(500, 'Não foi possível atualizar a tarefa. Tente novamente.');
+    }
+  });
+
   return app;
 }
 

@@ -1,0 +1,129 @@
+{
+  "feature": "001-marcar-tarefa-concluida",
+  "base_branch": "main",
+  "branch": "001-marcar-tarefa-concluida",
+  "gh_path": "gh",
+  "pull_request": "https://github.com/mateusscs/todo-app/pull/1",
+  "commands": {
+    "test": "npm test",
+    "lint": null,
+    "build": null
+  },
+  "last_reviewed_commit": "2cb098f35bebdaa2b5ffaaa3a582c5719f43e2bb",
+  "stage": "AGUARDANDO_MERGE",
+  "artifacts": {
+    "spec.md": "E1",
+    "checklists/requirements.md": "E1",
+    "plan.md": "E2",
+    "research.md": "E2",
+    "data-model.md": "E2",
+    "quickstart.md": "E2",
+    "contracts/http-conclusao.md": "E2",
+    "tasks.md": "E3",
+    "review-report.md": "E5",
+    "qa-report.md": "E6"
+  },
+  "gates": {
+    "E1": {
+      "status": "aprovado",
+      "devolucoes": 0,
+      "checklist": "16/16"
+    },
+    "E2": {
+      "status": "aprovado",
+      "devolucoes": 0,
+      "premissas": [
+        "Arquiteto: repositório em memória existente; estado se perde ao reiniciar o servidor (atende à premissa de persistência entre recarregamentos)",
+        "Arquiteto: sem JS, marcar exige caixa + botão Salvar (2 interações, dentro do SC-001); com JS, 1 interação (research.md D4)",
+        "Arquiteto: definirConclusao define estado (idempotente) em vez de alternar",
+        "Arquiteto: lint e build inexistentes e não adicionados; cobertura apenas informativa"
+      ]
+    },
+    "E3": {
+      "status": "aprovado",
+      "devolucoes": 0
+    },
+    "E3.5": {
+      "status": "aprovado",
+      "critical": 0,
+      "achados": [
+        "F1 MEDIUM: T003/T004 marcados [P] mas ambos alteram test/app.test.js -> executar em sequência",
+        "C1 MEDIUM: com JS, falha de rede na submissão mostra página de erro do navegador; mensagem acessível cobre apenas 404/500 do servidor (risco para o PR)",
+        "B1 LOW: SC-001 sem JS = 2 interações (research D4)",
+        "E1 LOW: T001/T007 sem FR mapeado (verificação)"
+      ]
+    },
+    "E4": {
+      "status": "aprovado",
+      "devolucoes": 0,
+      "fase_atual": null,
+      "premissas": [
+        "Desenvolvedor: line-through aplicado ao label dentro de li.concluida",
+        "Desenvolvedor: 500 cobre falhas em definirConclusao; falha em listar() cai no handler padrão do Express"
+      ],
+      "verificacao_manual_pendente": [
+        "quickstart #5 teclado/foco",
+        "#7 layout título longo",
+        "#11 sem JS",
+        "submit automático com JS"
+      ]
+    },
+    "E5": {
+      "status": "aprovado",
+      "devolucoes": 0,
+      "rodada": 1,
+      "parecer": "aprovado com ressalvas",
+      "ressalvas": [
+        "Médio: botões 'Salvar' com mesmo nome acessível (views/index.ejs:40)",
+        "Baixo: falha em listar() dentro de renderizarErro cai no handler padrão do Express (stack trace fora de production)",
+        "Baixo: color #64748b em concluídas diverge da premissa 'sem cores adicionais'",
+        "Baixo: nome do teste cita 404 e 500, mas cobre só 404",
+        "Sugestão: sem CSRF nos POST (pré-existente)",
+        "Sugestão: página sem <main> (pré-existente)"
+      ]
+    },
+    "E6": {
+      "status": "aprovado",
+      "devolucoes": 0,
+      "rodada": 1,
+      "parecer": "aprovado com ressalvas",
+      "testes": "npm test 43/43 (exit 0)",
+      "defeitos": [
+        "D1 Média: com JS, falha de rede na submissão não exibe mensagem da aplicação (FR-008 edge case) — suspeita por inspeção",
+        "D2 Baixa: color #64748b em li.concluida label diverge da premissa 'sem cores adicionais'"
+      ],
+      "revisao_testes_qa": "aprovado com ressalvas (4 baixos/sugestão, sem Crítico)"
+    },
+    "E7": {
+      "status": "aprovado",
+      "devolucoes": 0,
+      "ci": "test pass; GitGuardian pass"
+    }
+  },
+  "tasks_done": [
+    "T001",
+    "T002",
+    "T003",
+    "T004",
+    "T005",
+    "T006",
+    "T007",
+    "T008"
+  ],
+  "blockers": [
+    "Divergência Spec Kit (1.4.4.dev0): script update-agent-context não existe em .specify/scripts/powershell; arquivo de contexto do agente (CLAUDE.md) não foi atualizado no E2. Prevalece a skill.",
+    "Scripts PowerShell do Spec Kit (.specify/scripts/powershell/*.ps1) não puderam ser executados neste ambiente (política de execução / permissão negada). Subagentes e orquestrador derivaram FEATURE_DIR de .specify/feature.json e seguiram os templates diretamente."
+  ],
+  "human_checkpoints": {
+    "specification_review": {
+      "status": "aprovado",
+      "aprovado_em": "2026-11-21T15:00:00Z",
+      "mensagem": "Aprovado"
+    },
+    "merge_approval": {
+      "status": "pendente"
+    }
+  },
+  "updated_at": "2026-11-21T16:35:00Z",
+  "rodadas_correcao": 0
+}
