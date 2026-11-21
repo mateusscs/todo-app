@@ -12,6 +12,9 @@
     button { padding: .5rem 1rem; border: 0; border-radius: 6px; background: #2563eb; color: #fff; cursor: pointer; }
     ul { list-style: none; padding: 0; }
     li { padding: .6rem .75rem; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: .5rem; }
+    li form { display: flex; align-items: center; gap: .5rem; margin: 0; }
+    li label { flex: 1; overflow-wrap: anywhere; }
+    li.concluida label { text-decoration: line-through; color: #64748b; }
     .erro { color: #b91c1c; }
     .vazio { color: #64748b; }
   </style>
@@ -23,16 +26,30 @@
     <input type="text" name="titulo" placeholder="Nova tarefa" aria-label="Título da tarefa">
     <button type="submit">Adicionar</button>
   </form>
-  <% if (erro) { %><p class="erro"><%= erro %></p><% } %>
+  <% if (erro) { %><p class="erro" role="alert"><%= erro %></p><% } %>
 
   <% if (tarefas.length === 0) { %>
     <p class="vazio">Nenhuma tarefa cadastrada.</p>
   <% } else { %>
     <ul>
       <% tarefas.forEach(function (tarefa) { %>
-        <li data-id="<%= tarefa.id %>"><%= tarefa.titulo %></li>
+        <li id="tarefa-<%= tarefa.id %>" data-id="<%= tarefa.id %>"<% if (tarefa.concluida) { %> class="concluida"<% } %>>
+          <form method="post" action="/tarefas/<%= tarefa.id %>/conclusao">
+            <input type="checkbox" id="tarefa-<%= tarefa.id %>-concluida" name="concluida"<% if (tarefa.concluida) { %> checked<% } %>>
+            <label for="tarefa-<%= tarefa.id %>-concluida"><%= tarefa.titulo %></label>
+            <button type="submit">Salvar</button>
+          </form>
+        </li>
       <% }) %>
     </ul>
   <% } %>
+  <script>
+    document.querySelectorAll('li form input[type=checkbox]').forEach(function (caixa) {
+      var form = caixa.form;
+      var botao = form.querySelector('button[type=submit]');
+      if (botao) { botao.hidden = true; }
+      caixa.addEventListener('change', function () { form.submit(); });
+    });
+  </script>
 </body>
 </html>

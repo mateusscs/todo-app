@@ -54,12 +54,19 @@
     "E4": {
       "status": "em_andamento",
       "devolucoes": 0,
-      "fase_atual": "Phase 3: US1"
+      "fase_atual": "Phase 4: US2",
+      "premissas": [
+        "Desenvolvedor: line-through aplicado ao label dentro de li.concluida",
+        "Desenvolvedor: 500 cobre falhas em definirConclusao; falha em listar() cai no handler padrão do Express"
+      ]
     }
   },
   "tasks_done": [
     "T001",
-    "T002"
+    "T002",
+    "T003",
+    "T004",
+    "T005"
   ],
   "blockers": [
     "Divergência Spec Kit (1.4.4.dev0): script update-agent-context não existe em .specify/scripts/powershell; arquivo de contexto do agente (CLAUDE.md) não foi atualizado no E2. Prevalece a skill.",
@@ -75,5 +82,5 @@
       "status": "pendente"
     }
   },
-  "updated_at": "2026-11-21T15:35:00Z"
+  "updated_at": "2026-11-21T15:42:00Z"
 }
