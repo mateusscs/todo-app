@@ -4,21 +4,39 @@
   "branch": "001-marcar-tarefa-concluida",
   "gh_path": "gh",
   "pull_request": null,
-  "commands": {"test": null, "lint": null, "build": null},
+  "commands": {
+    "test": null,
+    "lint": null,
+    "build": null
+  },
   "last_reviewed_commit": null,
-  "stage": "AGUARDANDO_REVISAO_HUMANA",
+  "stage": "PLANEJANDO",
   "artifacts": {
     "spec.md": "E1",
     "checklists/requirements.md": "E1"
   },
   "gates": {
-    "E1": {"status": "pendente_revisao_humana", "devolucoes": 0, "checklist": "16/16"}
+    "E1": {
+      "status": "aprovado",
+      "devolucoes": 0,
+      "checklist": "16/16"
+    },
+    "E2": {
+      "status": "em_andamento",
+      "devolucoes": 0
+    }
   },
   "tasks_done": [],
   "blockers": [],
   "human_checkpoints": {
-    "specification_review": {"status": "pendente"},
-    "merge_approval": {"status": "pendente"}
+    "specification_review": {
+      "status": "aprovado",
+      "aprovado_em": "2026-11-21T15:00:00Z",
+      "mensagem": "Aprovado"
+    },
+    "merge_approval": {
+      "status": "pendente"
+    }
   },
-  "updated_at": "2026-11-21T00:00:00Z"
+  "updated_at": "2026-11-21T15:00:00Z"
 }
