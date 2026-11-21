@@ -54,10 +54,12 @@
     "E4": {
       "status": "em_andamento",
       "devolucoes": 0,
-      "fase_atual": "Phase 1: Setup"
+      "fase_atual": "Phase 2: Foundational"
     }
   },
-  "tasks_done": [],
+  "tasks_done": [
+    "T001"
+  ],
   "blockers": [
     "Divergência Spec Kit (1.4.4.dev0): script update-agent-context não existe em .specify/scripts/powershell; arquivo de contexto do agente (CLAUDE.md) não foi atualizado no E2. Prevalece a skill.",
     "Scripts PowerShell do Spec Kit (.specify/scripts/powershell/*.ps1) não puderam ser executados neste ambiente (política de execução / permissão negada). Subagentes e orquestrador derivaram FEATURE_DIR de .specify/feature.json e seguiram os templates diretamente."
@@ -72,5 +74,5 @@
       "status": "pendente"
     }
   },
-  "updated_at": "2026-11-21T15:25:00Z"
+  "updated_at": "2026-11-21T15:30:00Z"
 }

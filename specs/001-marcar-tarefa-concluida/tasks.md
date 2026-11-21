@@ -20,7 +20,7 @@ description: "Lista de tarefas: Marcar Tarefa como Concluída"
 
 **Purpose**: Confirmar a base existente; nenhuma dependência nova nem estrutura nova de produção (plan.md).
 
-- [ ] T001 Confirmar a linha de base executando `npm test` na branch `001-marcar-tarefa-concluida` e registrar que `src/app.js`, `src/tarefas.js`, `views/index.ejs` e `test/app.test.js` existem e a suíte passa (sem alterar `package.json`; nenhuma dependência nova)
+- [X] T001 Confirmar a linha de base executando `npm test` na branch `001-marcar-tarefa-concluida` e registrar que `src/app.js`, `src/tarefas.js`, `views/index.ejs` e `test/app.test.js` existem e a suíte passa (sem alterar `package.json`; nenhuma dependência nova)
 
 ---
 
