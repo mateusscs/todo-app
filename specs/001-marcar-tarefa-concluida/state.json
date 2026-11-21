@@ -5,15 +5,21 @@
   "gh_path": "gh",
   "pull_request": null,
   "commands": {
-    "test": null,
+    "test": "npm test",
     "lint": null,
     "build": null
   },
   "last_reviewed_commit": null,
-  "stage": "PLANEJANDO",
+  "stage": "IMPLEMENTANDO",
   "artifacts": {
     "spec.md": "E1",
-    "checklists/requirements.md": "E1"
+    "checklists/requirements.md": "E1",
+    "plan.md": "E2",
+    "research.md": "E2",
+    "data-model.md": "E2",
+    "quickstart.md": "E2",
+    "contracts/http-conclusao.md": "E2",
+    "tasks.md": "E3"
   },
   "gates": {
     "E1": {
@@ -22,12 +28,40 @@
       "checklist": "16/16"
     },
     "E2": {
-      "status": "em_andamento",
+      "status": "aprovado",
+      "devolucoes": 0,
+      "premissas": [
+        "Arquiteto: repositório em memória existente; estado se perde ao reiniciar o servidor (atende à premissa de persistência entre recarregamentos)",
+        "Arquiteto: sem JS, marcar exige caixa + botão Salvar (2 interações, dentro do SC-001); com JS, 1 interação (research.md D4)",
+        "Arquiteto: definirConclusao define estado (idempotente) em vez de alternar",
+        "Arquiteto: lint e build inexistentes e não adicionados; cobertura apenas informativa"
+      ]
+    },
+    "E3": {
+      "status": "aprovado",
       "devolucoes": 0
+    },
+    "E3.5": {
+      "status": "aprovado",
+      "critical": 0,
+      "achados": [
+        "F1 MEDIUM: T003/T004 marcados [P] mas ambos alteram test/app.test.js -> executar em sequência",
+        "C1 MEDIUM: com JS, falha de rede na submissão mostra página de erro do navegador; mensagem acessível cobre apenas 404/500 do servidor (risco para o PR)",
+        "B1 LOW: SC-001 sem JS = 2 interações (research D4)",
+        "E1 LOW: T001/T007 sem FR mapeado (verificação)"
+      ]
+    },
+    "E4": {
+      "status": "em_andamento",
+      "devolucoes": 0,
+      "fase_atual": "Phase 1: Setup"
     }
   },
   "tasks_done": [],
-  "blockers": [],
+  "blockers": [
+    "Divergência Spec Kit (1.4.4.dev0): script update-agent-context não existe em .specify/scripts/powershell; arquivo de contexto do agente (CLAUDE.md) não foi atualizado no E2. Prevalece a skill.",
+    "Scripts PowerShell do Spec Kit (.specify/scripts/powershell/*.ps1) não puderam ser executados neste ambiente (política de execução / permissão negada). Subagentes e orquestrador derivaram FEATURE_DIR de .specify/feature.json e seguiram os templates diretamente."
+  ],
   "human_checkpoints": {
     "specification_review": {
       "status": "aprovado",
@@ -38,5 +72,5 @@
       "status": "pendente"
     }
   },
-  "updated_at": "2026-11-21T15:00:00Z"
+  "updated_at": "2026-11-21T15:25:00Z"
 }
