@@ -10,7 +10,7 @@
     "build": null
   },
   "last_reviewed_commit": null,
-  "stage": "IMPLEMENTANDO",
+  "stage": "REVISANDO",
   "artifacts": {
     "spec.md": "E1",
     "checklists/requirements.md": "E1",
@@ -52,13 +52,24 @@
       ]
     },
     "E4": {
-      "status": "em_andamento",
+      "status": "aprovado",
       "devolucoes": 0,
-      "fase_atual": "Phase 5: Polish",
+      "fase_atual": null,
       "premissas": [
         "Desenvolvedor: line-through aplicado ao label dentro de li.concluida",
         "Desenvolvedor: 500 cobre falhas em definirConclusao; falha em listar() cai no handler padrão do Express"
+      ],
+      "verificacao_manual_pendente": [
+        "quickstart #5 teclado/foco",
+        "#7 layout título longo",
+        "#11 sem JS",
+        "submit automático com JS"
       ]
+    },
+    "E5": {
+      "status": "em_andamento",
+      "devolucoes": 0,
+      "rodada": 1
     }
   },
   "tasks_done": [
@@ -67,7 +78,9 @@
     "T003",
     "T004",
     "T005",
-    "T006"
+    "T006",
+    "T007",
+    "T008"
   ],
   "blockers": [
     "Divergência Spec Kit (1.4.4.dev0): script update-agent-context não existe em .specify/scripts/powershell; arquivo de contexto do agente (CLAUDE.md) não foi atualizado no E2. Prevalece a skill.",
@@ -83,5 +96,6 @@
       "status": "pendente"
     }
   },
-  "updated_at": "2026-11-21T15:48:00Z"
+  "updated_at": "2026-11-21T15:55:00Z",
+  "rodadas_correcao": 0
 }

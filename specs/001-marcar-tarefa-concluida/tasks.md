@@ -64,8 +64,8 @@ description: "Lista de tarefas: Marcar Tarefa como Concluída"
 
 ## Phase 5: Polish & Cross-Cutting Concerns
 
-- [ ] T007 Executar `npm test` completo e confirmar código de saída 0 (ver Pendências)
-- [ ] T008 [P] Percorrer os cenários manuais de `specs/001-marcar-tarefa-concluida/quickstart.md` (teclado #5, título longo, única tarefa, com e sem JavaScript) e corrigir em `views/index.ejs` ou `src/app.js` qualquer divergência encontrada (FR-009, SC-001, SC-004)
+- [X] T007 Executar `npm test` completo e confirmar código de saída 0 (ver Pendências)
+- [X] T008 [P] Percorrer os cenários manuais de `specs/001-marcar-tarefa-concluida/quickstart.md` (teclado #5, título longo, única tarefa, com e sem JavaScript) e corrigir em `views/index.ejs` ou `src/app.js` qualquer divergência encontrada (FR-009, SC-001, SC-004)
 
 ---
 
