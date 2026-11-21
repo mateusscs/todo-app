@@ -9,8 +9,8 @@
     "lint": null,
     "build": null
   },
-  "last_reviewed_commit": null,
-  "stage": "REVISANDO",
+  "last_reviewed_commit": "2cb098f35bebdaa2b5ffaaa3a582c5719f43e2bb",
+  "stage": "TESTANDO",
   "artifacts": {
     "spec.md": "E1",
     "checklists/requirements.md": "E1",
@@ -19,7 +19,8 @@
     "data-model.md": "E2",
     "quickstart.md": "E2",
     "contracts/http-conclusao.md": "E2",
-    "tasks.md": "E3"
+    "tasks.md": "E3",
+    "review-report.md": "E5"
   },
   "gates": {
     "E1": {
@@ -67,6 +68,20 @@
       ]
     },
     "E5": {
+      "status": "aprovado",
+      "devolucoes": 0,
+      "rodada": 1,
+      "parecer": "aprovado com ressalvas",
+      "ressalvas": [
+        "Médio: botões 'Salvar' com mesmo nome acessível (views/index.ejs:40)",
+        "Baixo: falha em listar() dentro de renderizarErro cai no handler padrão do Express (stack trace fora de production)",
+        "Baixo: color #64748b em concluídas diverge da premissa 'sem cores adicionais'",
+        "Baixo: nome do teste cita 404 e 500, mas cobre só 404",
+        "Sugestão: sem CSRF nos POST (pré-existente)",
+        "Sugestão: página sem <main> (pré-existente)"
+      ]
+    },
+    "E6": {
       "status": "em_andamento",
       "devolucoes": 0,
       "rodada": 1
@@ -96,6 +111,6 @@
       "status": "pendente"
     }
   },
-  "updated_at": "2026-11-21T15:55:00Z",
+  "updated_at": "2026-11-21T16:00:00Z",
   "rodadas_correcao": 0
 }
